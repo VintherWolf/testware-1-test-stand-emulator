@@ -1,0 +1,53 @@
+## To do / Test Cases for "Test Stand Emulator"
+
+JSON Controller:
+x Import Template (__init__): 
+    x TC1-A Kan importere template
+    x TC2-A Accepterer kun kendte templates
+x Validere importeret template
+    x TC3-A Den Importerede template valideres mod indholdet i den lagrede
+    x TC4-A Hvis en type int sættes til type string fejler validering 
+    x TC5-A Kan validere WebinterfaceTeststandPayload_v1
+    x TC6-A Kan importere default template med argument "default"
+- Serialize et "JSON" Dict
+    x TC7-A Kan serialize dict til string
+- De-Serialize en "JSON" String
+    x TC8-A Kan De-serialize en string til dict
+- SetDefaultsValues
+    x TC9-A Kan sætte værdierne i et JSON schema til default værdier
+- SetValues
+    x TC10-A Kan sætte værdierne i et JSON schema til "rigtige" værdier
+
+Data Controller:
+
+
+-
+-
+
+
+Webserver / Client:
+- Kan Modtage data
+    - TC
+- Kan flytte data til memory
+-
+-
+-
+
+Data Transmitter:
+-
+-
+-
+-
+-
+
+
+Data Receiver:
+- 
+-
+-
+-
+
+
+
+
+

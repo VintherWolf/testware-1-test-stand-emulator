@@ -1,0 +1,19 @@
+    {
+        "protocolVersion": 1.0,
+        "sentBy": "<machineProcessId>",
+        "msgType": "<command|status|data>",
+        "commandList": "<comma separated list of commands>",
+        "statusCode": "<statusCodeIdForTeststand>",
+        "parameterObj": [
+            {
+                "subJSONschema1": "<sub1>"
+            }
+        ],
+        "dataObj": [
+            {
+                "subJSONschema2": "<sub2>"
+            }
+        ],
+        "embeddedFileFormat": "<formatType>",
+        "embeddedFile": "<embed string/serialized>"
+    }
