@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 import socket
 import sys
+import settings
 from time import sleep
 
 
 def getNetData():
-    print("netcomserverStatus = %s" % netcomserverStatus)
     datapackages = []
     #tempData = ""
     # Create a TCP/IP socket
@@ -51,7 +51,6 @@ def getNetData():
 
         finally:
             # Clean up the connection
-            netcomserverStatus = "down"
             connection.close()
 
 
