@@ -42,9 +42,9 @@ class DataControl():
             print("Test Stand 1 Starts Testing!")
             bbbsettings.msgType = "command"
             bbbsettings.commandList = "starttest"
-            JsonControl.setValues(self, self.jsonSchema)
-            bbbsettings.volatileData = JsonControl.serialize(
-                self, self.jsonSchema)
+            self.cjsonSchema.setValues(self.jsonSchema)
+            bbbsettings.volatileData = self.cjsonSchema.serialize(
+                self.jsonSchema)
             sendNetData()
             print("Received = %s" % bbbsettings.rxData)
 
