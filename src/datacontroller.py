@@ -40,13 +40,13 @@ class DataControl():
     def bbbstartTest(self, testStandID):
         if testStandID == "TS1":
             print("Test Stand 1 Starts Testing!")
-            bbbsettings.msgType = "command"
-            bbbsettings.commandList = "starttest"
+            settings.msgType = "command"
+            settings.commandList = "starttest"
             self.cjsonSchema.setValues(self.jsonSchema)
-            bbbsettings.volatileData = self.cjsonSchema.serialize(
+            settings.volatileData = self.cjsonSchema.serialize(
                 self.jsonSchema)
             sendNetData()
-            print("Received = %s" % bbbsettings.rxData)
+            print("Received = %s" % settings.rxData)
 
         else:
             print("Unkown Test Stand ID!")
@@ -57,10 +57,9 @@ if __name__ == '__main__':
     argv = sys.argv
 
     commands = ['-bbbtest']
-    platform = sys.platform
 
-    if platform == "linux2":
-        import bbbsettings
+    if sys.platform == "linux2":
+        import settings
         print("Running on BeagleBone Black")
     else:
         print("Running on Host PC or an unknown system")
@@ -69,7 +68,7 @@ if __name__ == '__main__':
     if len(argv) == 3:
         if commands[0] in argv:
             bbbtest = DataControl()
-            bbbtest.bbbsetTemplate(bbbsettings.defaultJsonTemplate)
+            bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
             bbbtest.bbbstartTest(argv[2])
         else:
             print("Available Commands is:")

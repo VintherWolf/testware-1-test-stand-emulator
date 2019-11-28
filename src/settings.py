@@ -2,8 +2,21 @@
 """ Contains all shared variables
 """
 import os
-
+import sys
 jsonTemplatesDir = ""
+
+# Host Specifics
+if sys.platform == "linux2":
+    try:
+        host = os.uname()
+        if host[1] == "beaglebone":
+            hostname = "TestStand"
+    except:
+        Hostname = "WebServer"
+        pass
+else:
+    Hostname = "WebServer"
+
 
 try:
     os.listdir("src")
@@ -13,8 +26,7 @@ except:
 
 
 global netcomserverStatus
-# Host Specifics
-Hostname = "WebServer"
+
 
 # JSON Controller and Test
 

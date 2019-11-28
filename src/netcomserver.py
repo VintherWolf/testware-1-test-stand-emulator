@@ -1,21 +1,10 @@
 #!/usr/bin/python3
-import settings
 import socket
 import sys
 from time import sleep
 
-global netcomserverStatus
-netcomserverStatus = "down"
-global rxData, txData, count
-rxData = ""
-txData = ""
-
-packages = 0
-
 
 def getNetData():
-    global netcomserverStatus, rxData, txData
-    netcomserverStatus = "up"
     print("netcomserverStatus = %s" % netcomserverStatus)
     datapackages = []
     #tempData = ""
@@ -40,7 +29,6 @@ def getNetData():
             # Receive the data in small packages
             while True:
                 package = connection.recv(4096)
-                # print(datapackages)
                 if package == b'KillServer':
                     return "Server killed"
                 if package == b'NoMorePackages':
