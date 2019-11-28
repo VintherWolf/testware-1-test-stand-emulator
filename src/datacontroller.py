@@ -40,10 +40,10 @@ class DataControl():
     def bbbstartTest(self, testStandID):
         if testStandID == "TS1":
             print("Test Stand 1 Starts Testing!")
-            settings.msgType = "command"
-            settings.commandList = "starttest"
+            bbbsettings.msgType = "command"
+            bbbsettings.commandList = "starttest"
             JsonControl.setValues(self, self.jsonSchema)
-            settings.volatileData = JsonControl.serialize(
+            bbbsettings.volatileData = JsonControl.serialize(
                 self, self.jsonSchema)
             sendNetData()
             print("Received = %s" % bbbsettings.rxData)
