@@ -39,7 +39,7 @@ def getNetData():
 
             # Receive the data in small packages
             while True:
-                package = connection.recv(4048)
+                package = connection.recv(4096)
                 # print(datapackages)
                 if package == b'KillServer':
                     return "Server killed"
