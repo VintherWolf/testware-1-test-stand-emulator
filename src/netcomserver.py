@@ -40,7 +40,6 @@ def getNetData():
             settings.testRun = "Running"
         #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
             if settings.testRun == "Running":
-                sleep(3)
                 print("TEST RUNNING")
                 message = "GPIO"
                 message = message.encode(settings.ENCODING)
