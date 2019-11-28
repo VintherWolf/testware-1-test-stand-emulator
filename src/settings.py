@@ -10,7 +10,7 @@ if sys.platform == "linux2":
     try:
         host = os.uname()
         if host[1] == "beaglebone":
-            hostname = "TestStand"
+            Hostname = "TestStand"
     except:
         Hostname = "WebServer"
         pass
