@@ -38,9 +38,9 @@ def getNetData():
                 datapackages.append(package)
             settings.rxData_ser = b''.join(datapackages)
             settings.testRun = "Running"
-            print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
+        #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
             if settings.testRun == "Running":
-                sleep(2)
+                sleep(3)
                 print("TEST RUNNING")
                 message = "GPIO"
                 message = message.encode(settings.ENCODING)
