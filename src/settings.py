@@ -5,6 +5,9 @@ import os
 import sys
 jsonTemplatesDir = ""
 
+# Set to True for testing only
+serverloopback = False
+
 # Host Specifics
 if sys.platform == "linux2":
     try:
@@ -69,8 +72,13 @@ global testRun
 testRun = ""
 
 # Inet Settings
-serverIP = 'localhost'
-serverPort = 10000
+if serverloopback == False:
+    serverIP = '192.168.7.2'
+    serverPort = 10000
+else:
+    serverIP = 'localhost'
+    serverPort = 10000
+
 ENCODING = 'utf-8'
 
 netcomserverStatus = ''

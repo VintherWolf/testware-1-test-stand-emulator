@@ -11,7 +11,7 @@ def sendNetData():
     datapackages = []
     # tempData = ""
     # Connect the socket to the port where the server is listening
-    server_address = ('localhost', 10000)
+    server_address = (settings.serverIP, settings.serverPort)
     print(sys.stderr, 'connecting to %s port %s' % server_address)
     sock.connect(server_address)
     sock.settimeout(10)
