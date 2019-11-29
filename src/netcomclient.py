@@ -31,9 +31,8 @@ def sendNetData():
             sock.sendall(message)
         # print("Test Result %s" % testResult)
         # Receive the data in small packages
-        sleep(2)
         while True:
-            package = sock.recv(4096)
+            package = sock.recv(settings.NETBUFSIZE)
             # print(datapackages)
             if package == b'NoMorePackages':
                 break

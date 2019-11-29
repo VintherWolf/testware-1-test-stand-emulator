@@ -79,7 +79,7 @@ if serverloopback == False:
 else:
     serverIP = 'localhost'
     serverPort = 10000
-
+NETBUFSIZE = 1024
 ENCODING = 'utf-8'
 
 netcomserverStatus = ''

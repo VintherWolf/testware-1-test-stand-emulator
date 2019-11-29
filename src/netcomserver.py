@@ -28,7 +28,7 @@ def getNetData():
 
             # Receive the data in small packages
             while True:
-                package = connection.recv(4096)
+                package = connection.recv(settings.NETBUFSIZE)
                 if package == b'KillServer':
                     return "Server killed"
                 if package == b'NoMorePackages':
@@ -40,6 +40,7 @@ def getNetData():
             settings.testRun = "Running"
         #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
             if settings.testRun == "Running":
+                sleep(1)
                 print("TEST RUNNING")
                 message = "GPIO"
                 message = message.encode(settings.ENCODING)
