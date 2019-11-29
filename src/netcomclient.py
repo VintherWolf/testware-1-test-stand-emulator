@@ -23,6 +23,7 @@ def sendNetData():
         message = message.encode(settings.ENCODING)
         sock.sendall(message)
         message = None
+        sleep(1)
         if message == None:
             # message = settings.volatileData
             message = 'NoMorePackages'
