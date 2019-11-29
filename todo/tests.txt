@@ -19,35 +19,17 @@ x Validere importeret template
     x TC10-A Kan sætte værdierne i et JSON schema til "rigtige" værdier
 
 Data Controller:
+- getKeys kan returnere de givne keys fra et json skema
 
+- getValues kan returnere de givne værdier fra et json skema
 
--
--
+- startTest kan starte (sendNetDatea()) en TCP/IP client,
+ som sender et JSON skema og der modtages test resultat fra test stand
 
-
-Webserver / Client:
+Webserver og client:
 - Kan Modtage data
     - TC
 - Kan flytte data til memory
--
--
--
-
-Data Transmitter:
--
--
--
--
--
-
-
-Data Receiver:
-- 
--
--
--
-
-
-
-
+- Kan stoppes remote med "kill server" signal
+- Kan sende data tilbage til clienten
 

@@ -14,6 +14,7 @@ if sys.platform == "linux2":
         host = os.uname()
         if host[1] == "beaglebone":
             Hostname = "TestStand"
+            print("Running on BeagleBone Black")
     except:
         Hostname = "WebServer"
         pass

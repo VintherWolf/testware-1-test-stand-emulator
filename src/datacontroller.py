@@ -2,6 +2,7 @@
 import sys
 from jsoncontroller import JsonControl
 from netcomclient import sendNetData
+import settings
 
 
 class DataControl():
@@ -34,23 +35,9 @@ class DataControl():
             self.jsonSchema = self.cjsonSchema.getTemplate(
                 schema)
         except:
-            print(schema)
+            print("Failed loading JSON Schema!")
         self.cjsonSchema.validateTemplate(self.jsonSchema)
-
-    def bbbstartTest(self, testStandID):
-        if testStandID == "TS1":
-            print("Test Stand 1 Starts Testing!")
-            settings.msgType = "command"
-            settings.commandList = "starttest"
-            self.cjsonSchema.setValues(self.jsonSchema)
-            settings.volatileData = self.cjsonSchema.serialize(
-                self.jsonSchema)
-            sendNetData()
-            print("Received = %s" % settings.rxData)
-
-        else:
-            print("Unkown Test Stand ID!")
-            print("Provide TS1 for Test Stand 1, TS2, TS3 etc..")
+        return self.jsonSchema
 
 
 if __name__ == '__main__':
@@ -58,18 +45,11 @@ if __name__ == '__main__':
 
     commands = ['-bbbtest']
 
-    if sys.platform == "linux2":
-        import settings
-        print("Running on BeagleBone Black")
-    else:
-        print("Running on Host PC or an unknown system")
-        import settings
-
     if len(argv) == 3:
         if commands[0] in argv:
             bbbtest = DataControl()
-            bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
-            bbbtest.bbbstartTest(argv[2])
+            bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
+            bbbtest.startTest(bbbtemplate, argv[2])
         else:
             print("Available Commands is:")
             for command in range(0, len(commands)):
