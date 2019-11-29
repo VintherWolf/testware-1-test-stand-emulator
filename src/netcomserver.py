@@ -6,6 +6,13 @@ from time import sleep
 
 
 def getNetData():
+    """getNetData Starts webserver (TCP IP Socket), and listens for host
+    retrieves data from host, and saves it in settings.rxData_ser
+    Sends response from settings.txData_ser
+
+    :return: settings.rxData_ser
+    :rtype: JSON Dict
+    """
     datapackages = []
     #tempData = ""
     # Create a TCP/IP socket
@@ -41,7 +48,7 @@ def getNetData():
         #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
             if settings.testRun == "Running":
                 print("TEST RUNNING")
-                message = "GPIO"
+                message = settings.txData_ser
                 message = message.encode(settings.ENCODING)
                 print(sys.stderr, 'sending "%s"' % message)
                 connection.sendall(message)

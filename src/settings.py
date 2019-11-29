@@ -3,9 +3,8 @@
 """
 import os
 import sys
-jsonTemplatesDir = ""
 
-# Set to True for testing only
+# Set serverloopback = True for testing only
 serverloopback = False
 
 # Host Specifics
@@ -28,10 +27,6 @@ try:
 except:
     jsonTemplatesDir = "./json-templates/"
 
-
-global netcomserverStatus
-
-
 # JSON Controller and Test
 
 defaultJsonTemplate = "WebinterfaceTeststandPayload_v1.json"
@@ -39,7 +34,7 @@ refJsonTemplate = "goldentemplate.json"
 actualTemplate = ""
 sel_defaultJsonTemplate = ""
 
-# Default values for defualt template
+# Default values for default template
 df_protocolVersion = 1.0
 df_sentBy = Hostname
 df_msgType = None
@@ -57,19 +52,17 @@ statusCode = ""
 embeddedFileFormat = ""
 embeddedFile = ""
 
-# JSON String to be send
-global volatileData
+# Data Transactions
+# Client side
 volatileData = ""
-global rxData
 rxData = ""
-global txData
+str_rxData = ""
 txData = ""
-global teststandstatus
-teststandstatus = ""
 
-global rxData_ser
+# Server Side
 rxData_ser = ""
-global testRun
+str_rxData_ser
+txData_ser = "TEST"
 testRun = ""
 
 # Inet Settings
@@ -82,7 +75,5 @@ else:
 NETBUFSIZE = 1024
 ENCODING = 'utf-8'
 
-netcomserverStatus = ''
-
-# GUI
+# GUI Settings
 programTitle = " Test Stand Emulator Control "
