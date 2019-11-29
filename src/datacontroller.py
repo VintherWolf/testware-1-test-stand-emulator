@@ -19,10 +19,10 @@ class DataControl():
     def startTest(self, schema, testStandID):
         if testStandID == "TS1":
             print("Test Stand 1 Starts Testing!")
-            JsonControl.setDefaultValues(self, schema)
+            self.cjsonSchema.setDefaultValues(schema)
             settings.msgType = "command"
             settings.commandList = "starttest"
-            JsonControl.setValues(self, schema)
+            self.cjsonSchema.setValues(schema)
             settings.volatileData = JsonControl.serialize(
                 self, schema)
             sendNetData()
@@ -46,10 +46,13 @@ if __name__ == '__main__':
     commands = ['-bbbtest']
 
     if len(argv) == 3:
+        teststandID = argv[2]
         if commands[0] in argv:
             bbbtest = DataControl()
             bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
-            bbbtest.startTest(bbbtemplate, argv[2])
+            bbbtest.startTest(bbbtemplate, teststandID)
+            print("Argv 2 = ", teststandID)
+            print(bbbtemplate)
         else:
             print("Available Commands is:")
             for command in range(0, len(commands)):
