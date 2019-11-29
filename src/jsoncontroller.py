@@ -43,6 +43,9 @@ class JsonControl():
         if filename == "default":
             settings.sel_defaultJsonTemplate = 1
             self.filename = settings.defaultJsonTemplate
+        elif filename == settings.defaultJsonTemplate:
+            settings.sel_defaultJsonTemplate = 1
+            self.filename = settings.defaultJsonTemplate
         else:
             settings.sel_defaultJsonTemplate = 0
             self.filename = filename

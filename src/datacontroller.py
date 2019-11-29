@@ -19,7 +19,7 @@ class DataControl():
     def startTest(self, schema, testStandID):
         if testStandID == "TS1":
             print("Test Stand 1 Starts Testing!")
-            self.cjsonSchema.setDefaultValues(schema)
+
             settings.msgType = "command"
             settings.commandList = "starttest"
             self.cjsonSchema.setValues(schema)
@@ -47,11 +47,10 @@ if __name__ == '__main__':
     if len(argv) == 3:
         teststandID = argv[2]
         if commands[0] in argv:
-            settings.sel_defaultJsonTemplate = 1
             bbbtest = DataControl()
             bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
             bbbtest.startTest(bbbtemplate, teststandID)
-            print("Argv 2 = ", teststandID)
+            print("sel_default = ", settings.sel_defaultJsonTemplate)
             print(bbbtemplate)
         else:
             print("Available Commands is:")
