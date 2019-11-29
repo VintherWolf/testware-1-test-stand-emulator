@@ -42,12 +42,12 @@ class DataControl():
 
 if __name__ == '__main__':
     argv = sys.argv
-
     commands = ['-bbbtest']
 
     if len(argv) == 3:
         teststandID = argv[2]
         if commands[0] in argv:
+            settings.sel_defaultJsonTemplate = 1
             bbbtest = DataControl()
             bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
             bbbtest.startTest(bbbtemplate, teststandID)
