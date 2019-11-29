@@ -19,9 +19,6 @@ class DataControl():
     def startTest(self, schema, testStandID):
         if testStandID == "TS1":
             print("Test Stand 1 Starts Testing!")
-
-            settings.msgType = "command"
-            settings.commandList = "starttest"
             self.cjsonSchema.setValues(schema)
             settings.volatileData = JsonControl.serialize(
                 self, schema)
@@ -42,23 +39,27 @@ class DataControl():
 
 if __name__ == '__main__':
     argv = sys.argv
-    commands = ['-bbbtest']
-
-    if len(argv) == 3:
+    argvcommands = ['-bbbtest']
+    argvcommandlist = ' '.join(argvcommands)
+    if len(argv) > 2:
         teststandID = argv[2]
-        if commands[0] in argv:
+        if argvcommands[0] in argv:
+            settings.msgType = argv[3]
+            settings.commandList = argv[4]
+            settings.statusCode = argv[5]
             bbbtest = DataControl()
             bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
             bbbtest.startTest(bbbtemplate, teststandID)
-            print("sel_default = ", settings.sel_defaultJsonTemplate)
-            print(bbbtemplate)
         else:
             print("Available Commands is:")
-            for command in range(0, len(commands)):
-                print(commands[command])
+            for command in range(0, len(argvcommands)):
+                print(argvcommands[command])
     else:
-        print("Invalid input!")
-        print("Usage is -command -teststandid")
-        print("Where command can be:")
-        print(' '.join(commands))
-        print("and teststandid shall be TS1, TS2, TS3 etc.")
+        print(("Invalid input!"
+               "If default template is choosen:"
+               "Usage: -command -teststandid -msgtype -commandlist -statuscode"
+               "Where command can be: %s" % argvcommandlist))
+        print(("teststandid shall be TS1, TS2, TS3 etc."
+               "msgtype: <command|status|data>"
+               "commandlist: <comma separated list of commands>"
+               "statuscode: statusCodeIdForTeststand"))
