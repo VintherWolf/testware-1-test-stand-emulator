@@ -80,7 +80,7 @@ class Gui:
             settings.msgType = "command"
             settings.commandList = "starttest"
             JsonControl.setValues(self, self.jsonSchema)
-            settings.volatileData = JsonControl.serialize(
+            settings.txData = JsonControl.serialize(
                 self, self.jsonSchema)
             sendNetData()
             self.entry_rxData.insert(0, settings.rxData)

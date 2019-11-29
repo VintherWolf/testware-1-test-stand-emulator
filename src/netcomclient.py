@@ -17,19 +17,18 @@ def sendNetData():
     sock.settimeout(10)
     try:
         # Send data
-        message = settings.volatileData
-        # message = 'test message'
-        print(sys.stderr, 'sending "%s"' % message)
-        message = message.encode(settings.ENCODING)
-        sock.sendall(message)
-        message = None
+        txData = settings.txData
+        # txData = 'test txData'
+        print(sys.stderr, 'sending "%s"' % txData)
+        txData = txData.encode(settings.ENCODING)
+        sock.sendall(txData)
+        txData = None
         sleep(1)
-        if message == None:
-            # message = settings.volatileData
-            message = 'NoMorePackages'
-        #    print(sys.stderr, 'sending "%s"' % message)
-            message = message.encode(settings.ENCODING)
-            sock.sendall(message)
+        if txData == None:
+            txData = 'NoMorePackages'
+        #    print(sys.stderr, 'sending "%s"' % txData)
+            txData = txData.encode(settings.ENCODING)
+            sock.sendall(txData)
         # print("Test Result %s" % testResult)
         # Receive the data in small packages
         while True:

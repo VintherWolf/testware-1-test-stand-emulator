@@ -6,7 +6,7 @@ import sys
 
 # Set serverloopback = True for testing only
 serverloopback = False
-
+invokeJsonParser = False
 # Host Specifics
 if sys.platform == "linux2":
     try:
@@ -14,6 +14,7 @@ if sys.platform == "linux2":
         if host[1] == "beaglebone":
             Hostname = "TestStand"
             print("Running on BeagleBone Black")
+            invokeJsonParser = True
     except:
         Hostname = "WebServer"
         pass
@@ -54,15 +55,16 @@ embeddedFile = ""
 
 # Data Transactions
 # Client side
-volatileData = ""
-rxData = ""
-str_rxData = ""
-txData = ""
+
+rxData_cli = ""
+str_rxData_cli = ""
+txData_cli = ""
 
 # Server Side
 rxData_ser = ""
-str_rxData_ser
+str_rxData_ser = ""
 txData_ser = "TEST"
+
 testRun = ""
 
 # Inet Settings

@@ -2,6 +2,7 @@
 import socket
 import sys
 import settings
+import teststandgpio
 from time import sleep
 
 
@@ -13,7 +14,8 @@ def getNetData():
     :return: settings.rxData_ser
     :rtype: JSON Dict
     """
-    datapackages = []
+    str_rxData_ser = []
+    settings.sel_defaultJsonTemplate = 1
     #tempData = ""
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -33,27 +35,26 @@ def getNetData():
         try:
             print(sys.stderr, 'connection from', client_address)
 
-            # Receive the data in small packages
+            # Receive the data in small
             while True:
-                package = connection.recv(settings.NETBUFSIZE)
-                if package == b'KillServer':
+                rxData_temp = connection.recv(settings.NETBUFSIZE)
+                if rxData_temp == b'KillServer':
                     return "Server killed"
-                if package == b'NoMorePackages':
+                if rxData_temp == b'NoMorePackages':
                     break
-                if not package:
+                if not rxData_temp:
                     break
-                datapackages.append(package)
-            settings.rxData_ser = b''.join(datapackages)
+                str_rxData_ser.append(rxData_temp)
+            settings.str_rxData_ser = b''.join(str_rxData_ser)
             settings.testRun = "Running"
         #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
             if settings.testRun == "Running":
-                print("TEST RUNNING")
                 message = settings.txData_ser
                 message = message.encode(settings.ENCODING)
                 print(sys.stderr, 'sending "%s"' % message)
                 connection.sendall(message)
                 settings.testRun = "Ready"
-                datapackages = []
+                str_rxData_ser = []
 
         finally:
             # Clean up the connection

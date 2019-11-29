@@ -20,7 +20,7 @@ class DataControl():
         if testStandID == "TS1":
             print("Test Stand 1 Starts Testing!")
             self.cjsonSchema.setValues(schema)
-            settings.volatileData = JsonControl.serialize(
+            settings.txData = JsonControl.serialize(
                 self, schema)
             sendNetData()
         else:
