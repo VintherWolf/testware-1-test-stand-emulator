@@ -56,9 +56,9 @@ embeddedFile = ""
 # Data Transactions
 # Client side
 
-rxData_cli = ""
-str_rxData_cli = ""
-txData_cli = ""
+rxData_cl = ""
+str_rxData_cl = ""
+txData_cl = ""
 
 # Server Side
 rxData_ser = ""

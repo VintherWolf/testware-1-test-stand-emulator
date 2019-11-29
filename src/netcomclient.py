@@ -17,18 +17,18 @@ def sendNetData():
     sock.settimeout(10)
     try:
         # Send data
-        txData = settings.txData
-        # txData = 'test txData'
-        print(sys.stderr, 'sending "%s"' % txData)
-        txData = txData.encode(settings.ENCODING)
-        sock.sendall(txData)
-        txData = None
+        txData_cl = settings.txData_cl
+        # txData_cl = 'test txData_cl'
+        print(sys.stderr, 'sending "%s"' % txData_cl)
+        txData_cl = txData_cl.encode(settings.ENCODING)
+        sock.sendall(txData_cl)
+        txData_cl = None
         sleep(1)
-        if txData == None:
-            txData = 'NoMorePackages'
-        #    print(sys.stderr, 'sending "%s"' % txData)
-            txData = txData.encode(settings.ENCODING)
-            sock.sendall(txData)
+        if txData_cl == None:
+            txData_cl = 'NoMorePackages'
+        #    print(sys.stderr, 'sending "%s"' % txData_cl)
+            txData_cl = txData_cl.encode(settings.ENCODING)
+            sock.sendall(txData_cl)
         # print("Test Result %s" % testResult)
         # Receive the data in small packages
         while True:
@@ -39,12 +39,12 @@ def sendNetData():
             if not package:
                 break
             datapackages.append(package)
-            settings.rxData = b''.join(datapackages)
-            settings.rxData = settings.rxData.decode()
-            print("Received = ", settings.rxData)
+            settings.rxData_cl = b''.join(datapackages)
+            settings.rxData_cl = settings.rxData_cl.decode()
+            print("Received = ", settings.rxData_cl)
             datapackages = []
     finally:
-        print(sys.stderr, 'Client closing socket')
+        print(sys.stderr, 'clent closing socket')
        # print("Test Result %s" % testResult)
         sock.close()
 
