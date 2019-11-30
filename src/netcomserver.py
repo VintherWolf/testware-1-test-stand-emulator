@@ -45,9 +45,12 @@ def getNetData():
                     break
                 str_rxData_ser.append(rxData_temp)
             settings.str_rxData_ser = b''.join(str_rxData_ser)
+            settings.str_rxData_ser = settings.str_rxData_ser.decode()
             settings.testRun = "Running"
         #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
             if settings.testRun == "Running":
+                while settings.testRun is not "Ready":
+                    sleep(0.1)
                 message = settings.txData_ser
                 message = message.encode(settings.ENCODING)
                 print(sys.stderr, 'sending "%s"' % message)

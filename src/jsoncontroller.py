@@ -94,16 +94,22 @@ class JsonControl():
             print("No Default values to set")
 
     def setValues(self, schema):
-        if settings.sel_defaultJsonTemplate == 1:
-            schema["protocolVersion"] = settings.protocolVersion
-            schema["sentBy"] = settings.sentBy
-            schema["msgType"] = settings.msgType
-            schema["commandList"] = settings.commandList
-            schema["statusCode"] = settings.statusCode
-            schema["embeddedFileFormat"] = settings.embeddedFileFormat
-            schema["embeddedFile"] = settings.embeddedFile
-        else:
-            print("Missing keys in settings for this schema!")
+        schema["protocolVersion"] = settings.protocolVersion
+        schema["sentBy"] = settings.sentBy
+        schema["msgType"] = settings.msgType
+        schema["commandList"] = settings.commandList
+        schema["statusCode"] = settings.statusCode
+        schema["embeddedFileFormat"] = settings.embeddedFileFormat
+        schema["embeddedFile"] = settings.embeddedFile
+
+    def getValues(self, schema):
+        settings.protocolVersion = schema["protocolVersion"]
+        settings.sentBy = schema["sentBy"]
+        settings.msgType = schema["msgType"]
+        settings.commandList = schema["commandList"]
+        settings.statusCode = schema["statusCode"]
+        settings.embeddedFileFormat = schema["embeddedFileFormat"]
+        settings.embeddedFile = schema["embeddedFile"]
 
     def serialize(self, schema):
         """serialize converts passed schema to json-string 
