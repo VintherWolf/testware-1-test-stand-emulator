@@ -3,9 +3,7 @@ import socket
 import sys
 import settings
 from time import sleep
-
-if settings.Hostname == "TestStand":
-    from teststandgpio import getTestResult
+from teststandgpio import getTestResult
 print("Running on host %s " % settings.Hostname)  # Remove after debug
 
 
@@ -54,13 +52,14 @@ def getNetData():
             settings.rxData_ser = settings.rxData_ser.replace(
                 "\n", "")  # Remove newlines
             settings.testRun = "Running"
-            print(sys.stderr, 'Received "%s"' % settings.str_rxData_ser)
+            #print(sys.stderr, 'Received "%s"' % settings.str_rxData_ser)
             if settings.testRun == "Running":
-                try:
-                    getTestResult()
-                except:
-                    print("Failed handling JSON schema")
-                    pass
+                print(settings.testRun)
+                # try:
+                getTestResult()
+               # except:
+                print("Failed handling JSON schema")
+                #    pass
                 message = settings.txData_ser
                 message = message.encode(settings.ENCODING)
                 print(sys.stderr, 'sending "%s"' % message)
