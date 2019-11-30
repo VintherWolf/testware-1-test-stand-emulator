@@ -50,5 +50,6 @@ while settings.invokeJsonParser == True:
             print(stderr, 'Shutting teststandgpio down')
         JsonWorker.setValues(JsonSchema)
         settings.txData_ser = JsonWorker.serialize(JsonSchema)
+        settings.testRun = "Ready"
     else:
         sleep(0.75)
