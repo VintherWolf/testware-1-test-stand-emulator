@@ -21,7 +21,7 @@ def getNetData():
     """
     str_rxData_ser = []
     settings.sel_defaultJsonTemplate = 1
-    #tempData = ""
+    # tempData = ""
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -51,11 +51,16 @@ def getNetData():
                     break
                 str_rxData_ser.append(rxData_temp)
             settings.str_rxData_ser = b''.join(str_rxData_ser)
-            settings.str_rxData_ser = settings.str_rxData_ser.decode()
+            settings.str_rxData_ser = settings.str_rxData_ser.decode(
+                settings.ENCODING)
             settings.testRun = "Running"
-        #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
+            print(sys.stderr, 'Received "%s"' % settings.str_rxData_ser)
             if settings.testRun == "Running":
-                getTestResult()
+                try:
+                    getTestResult()
+                except:
+                    print("Failed handling JSON schema")
+                    pass
                 message = settings.txData_ser
                 message = message.encode(settings.ENCODING)
                 print(sys.stderr, 'sending "%s"' % message)

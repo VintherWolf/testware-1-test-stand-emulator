@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-echo "Starts GUI"
-echo "Run start_netcomserver.sh before starting tests"
+echo "Starts Test Run"
 
-(/usr/bin/env python ./src/gui.py)
+
+(/usr/bin/env python ./src/datacontroller.py -bbbtest TS1 command readGPIO30 test)
 
