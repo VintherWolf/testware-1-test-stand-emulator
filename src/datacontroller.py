@@ -31,6 +31,7 @@ class DataControl():
         try:
             self.jsonSchema = self.cjsonSchema.getTemplate(
                 schema)
+            self.cjsonSchema.setDefaultValues(self.jsonSchema)
         except:
             print("Failed loading JSON Schema!")
         self.cjsonSchema.validateTemplate(self.jsonSchema)
@@ -41,25 +42,37 @@ if __name__ == '__main__':
     argv = sys.argv
     argvcommands = ['-bbbtest']
     argvcommandlist = ' '.join(argvcommands)
+    bbbtest = DataControl()
+    bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
+
     if len(argv) > 2:
         teststandID = argv[2]
         if argvcommands[0] in argv:
             settings.msgType = argv[3]
             settings.commandList = argv[4]
             settings.statusCode = argv[5]
-            bbbtest = DataControl()
-            bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
-            bbbtest.startTest(bbbtemplate, teststandID)
         else:
             print("Available Commands is:")
             for command in range(0, len(argvcommands)):
                 print(argvcommands[command])
     else:
-        print(("Invalid input!"
-               "If default template is choosen:"
-               "Usage: -command -teststandid -msgtype -commandlist -statuscode"
-               "Where command can be: %s" % argvcommandlist))
-        print(("teststandid shall be TS1, TS2, TS3 etc."
-               "msgtype: <command|status|data>"
-               "commandlist: <comma separated list of commands>"
-               "statuscode: statusCodeIdForTeststand"))
+       # print(("Invalid input!"
+        #       "If default template is choosen:"
+         #      "Usage: -command -teststandid -msgtype -commandlist -statuscode"
+          #     "Where command can be: %s" % argvcommandlist))
+       # print(("teststandid shall be TS1, TS2, TS3 etc."
+        #       "msgtype: <command|status|data>"
+         #      "commandlist: <comma separated list of commands>"
+          #     "statuscode: statusCodeIdForTeststand"))
+        settings.msgType = "command"
+        settings.statusCode = "SomeStatusCode"
+    while True:
+        choice = input("Set GPIO P8_11 HIGH (h) or LOW (l), Q for Quit")
+        if choice == 'HIGH' or choice == 'h':
+            settings.commandList = "setGPIO_P8_11H"
+        elif choice == 'Q':
+            print("Farewell")
+            break
+        else:
+            settings.commandList = "setGPIO_P8_11L"
+        bbbtest.startTest(bbbtemplate, "TS1")

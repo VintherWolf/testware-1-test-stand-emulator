@@ -21,7 +21,7 @@ def setGPIOpin(pin, state):
     GPIO.setup(spin, GPIO.OUT)    # eg. GPIO.setup("P8_10",GPIO.OUT)
     settings.msgType = "status"
     settings.commandList = "GPIO Pin "+spin+" is HIGH"
-    GPIO.setup(spin, output)
+    GPIO.output(spin, output)
     GPIO.cleanup()
 
 
