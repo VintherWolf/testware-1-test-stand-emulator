@@ -4,6 +4,12 @@ import sys
 import settings
 from time import sleep
 
+if settings.Hostname == "TestStand":
+    from teststandgpio import getTestResult
+else:
+    def getTestResult():
+        print("Running on host %s " % settings.Hostname)
+
 
 def getNetData():
     """getNetData Starts webserver (TCP IP Socket), and listens for host
@@ -49,8 +55,7 @@ def getNetData():
             settings.testRun = "Running"
         #    print(sys.stderr, 'Received "%s"' % settings.rxData_ser.decode())
             if settings.testRun == "Running":
-                while settings.testRun is not "Ready":
-                    sleep(0.1)
+                getTestResult()
                 message = settings.txData_ser
                 message = message.encode(settings.ENCODING)
                 print(sys.stderr, 'sending "%s"' % message)

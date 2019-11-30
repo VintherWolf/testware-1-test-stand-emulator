@@ -12,7 +12,7 @@ if sys.platform == "linux2":
     try:
         host = os.uname()
         if host[1] == "beaglebone":
-            Hostname = "TestStand"
+            Hostname = "TestStand"  # extends: netcomserver
             print("Running on BeagleBone Black")
             invokeJsonParser = True
     except:

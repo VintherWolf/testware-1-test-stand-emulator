@@ -35,7 +35,8 @@ def readGPIOpin(pin):  # pin format = P8_XX
 
 JsonWorker = JsonControl()
 
-while settings.invokeJsonParser == True:
+
+def getTestResult():
     if settings.testRun == "Running":
         JsonSchema = JsonWorker.deSerialize(settings.str_rxData_ser)
         JsonWorker.getValues(JsonSchema)
@@ -52,4 +53,4 @@ while settings.invokeJsonParser == True:
         settings.txData_ser = JsonWorker.serialize(JsonSchema)
         settings.testRun = "Ready"
     else:
-        sleep(0.75)
+        print("Failed! Test is Not Running!")
