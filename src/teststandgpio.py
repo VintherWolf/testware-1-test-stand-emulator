@@ -48,7 +48,7 @@ while settings.invokeJsonParser == True:
                 setGPIOpin("P8_30", "LOW")
         if settings.msgType == "shutdown":
             print(stderr, 'Shutting teststandgpio down')
+        JsonWorker.setValues(JsonSchema)
+        settings.txData_ser = JsonWorker.serialize(JsonSchema)
     else:
         sleep(0.75)
-    JsonWorker.setValues(JsonSchema)
-    settings.txData_ser = JsonWorker.serialize(JsonSchema)
