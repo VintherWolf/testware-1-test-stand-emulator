@@ -2,7 +2,6 @@
 import socket
 import sys
 import settings
-import teststandgpio
 from time import sleep
 
 
