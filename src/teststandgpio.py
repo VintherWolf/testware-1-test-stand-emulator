@@ -38,6 +38,7 @@ JsonWorker = JsonControl()
 
 def getTestResult():
     if settings.testRun == "Running":
+        print("Schema for deserialize = %s" % settings.str_rxData_ser)
         JsonSchema = JsonWorker.deSerialize(settings.str_rxData_ser)
         JsonWorker.getValues(JsonSchema)
         if settings.msgType == "command":

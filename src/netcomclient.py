@@ -41,6 +41,7 @@ def sendNetData():
             datapackages.append(package)
             settings.rxData_cl = b''.join(datapackages)
             settings.rxData_cl = settings.rxData_cl.decode()
+            settings.rxData_cl = settings.rxData_cl.replace("\n", "")
             print("Received = ", settings.rxData_cl)
             datapackages = []
     finally:

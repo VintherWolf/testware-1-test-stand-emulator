@@ -53,7 +53,8 @@ def getNetData():
             settings.str_rxData_ser = b''.join(str_rxData_ser)
             settings.str_rxData_ser = settings.str_rxData_ser.decode(
                 settings.ENCODING)
-            settings.str_rxData_ser.rstrip()  # Remove newlines
+            settings.rxData_ser = settings.rxData_ser.replace(
+                "\n", "")  # Remove newlines
             settings.testRun = "Running"
             print(sys.stderr, 'Received "%s"' % settings.str_rxData_ser)
             if settings.testRun == "Running":
