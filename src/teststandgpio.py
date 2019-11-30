@@ -8,17 +8,20 @@ from jsoncontroller import JsonControl
 
 def setGPIOpin(pin, state):
     spin = str(pin)
-    sstate = str(state)
+    output = None
     if state == "HIGH":
         settings.msgType = "status"
         settings.commandList = "GPIO Pin "+spin+" set HIGH"
+        output = GPIO.HIGH
+
     else:
         settings.msgType = "status"
         settings.commandList = "GPIO Pin "+spin+" set LOW"
+        output = GPIO.LOW
     GPIO.setup(spin, GPIO.OUT)    # eg. GPIO.setup("P8_10",GPIO.OUT)
     settings.msgType = "status"
     settings.commandList = "GPIO Pin "+spin+" is HIGH"
-    GPIO.setup(spin, sstate)
+    GPIO.setup(spin, output)
     GPIO.cleanup()
 
 
@@ -43,12 +46,12 @@ def getTestResult():
         JsonSchema = JsonWorker.deSerialize(settings.str_rxData_ser)
         JsonWorker.getValues(JsonSchema)
         if settings.msgType == "command":
-            if settings.commandList == "readGPIO30":
-                readGPIOpin("P8_30")
-            if settings.commandList == "setGPIO30H":
-                setGPIOpin("P8_30", "HIGH")
-            if settings.commandList == "setGPIO30L":
-                setGPIOpin("P8_30", "LOW")
+            if settings.commandList == "readGPIO_P8_11":
+                readGPIOpin("P8_11")
+            if settings.commandList == "setGPIO_P8_11H":
+                setGPIOpin("P8_11", "HIGH")
+            if settings.commandList == "setGPIO_P8_11L":
+                setGPIOpin("P8_11", "LOW")
         if settings.msgType == "shutdown":
             print(stderr, 'Shutting teststandgpio down')
         JsonWorker.setValues(JsonSchema)
