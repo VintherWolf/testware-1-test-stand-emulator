@@ -6,9 +6,7 @@ from time import sleep
 
 if settings.Hostname == "TestStand":
     from teststandgpio import getTestResult
-else:
-    def getTestResult():
-        print("Running on host %s " % settings.Hostname)
+print("Running on host %s " % settings.Hostname)  # Remove after debug
 
 
 def getNetData():

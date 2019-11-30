@@ -34,6 +34,7 @@ def readGPIOpin(pin):  # pin format = P8_XX
 
 
 JsonWorker = JsonControl()
+JsonWorker.getTemplate("default")
 
 
 def getTestResult():
