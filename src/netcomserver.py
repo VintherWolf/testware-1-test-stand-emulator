@@ -51,20 +51,21 @@ def getNetData():
                 settings.ENCODING)
             settings.rxData_ser = settings.rxData_ser.replace(
                 "\n", "")  # Remove newlines
-            settings.testRun = "Running"
-            #print(sys.stderr, 'Received "%s"' % settings.str_rxData_ser)
-            if settings.testRun == "Running":
-                print(settings.testRun)
-                # try:
-                getTestResult()
-               # except:
-                print("Failed handling JSON schema")
-                #    pass
-                message = settings.txData_ser
-                message = message.encode(settings.ENCODING)
-                print(sys.stderr, 'sending "%s"' % message)
-                connection.sendall(message)
-                settings.testRun = "Ready"
+            settings.statusCode = "Busy"
+            # print(sys.stderr, 'Received "%s"' % settings.str_rxData_ser)
+            if settings.statusCode == "Busy":
+
+                try:
+                    getTestResult()
+                except:
+                    print("Failed handling JSON schema")
+                    pass
+                settings.txData_ser = settings.txData_ser
+                settings.txData_ser = settings.txData_ser.encode(
+                    settings.ENCODING)
+                print(sys.stderr, 'sending "%s"' % settings.txData_ser)
+                if settings.statusCode == "Ready":
+                    connection.sendall(settings.txData_ser)
                 str_rxData_ser = []
 
         finally:

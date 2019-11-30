@@ -6,6 +6,9 @@ from time import sleep
 
 
 def sendNetData():
+    """sendNetData Connects to the server, and performs json schema 
+    transactions
+    """
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     datapackages = []

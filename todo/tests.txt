@@ -33,3 +33,14 @@ Webserver og client:
 - Kan stoppes remote med "kill server" signal
 - Kan sende data tilbage til clienten
 
+TestStand GPIO:
+- Kan sætte en GPIO pin høj
+- Kan sætte en GPIO pin lav
+- Kan sende status tilbage til client
+
+
+Other:
+[-] Update requirements.txt with adafruit, and what may still be missing
+[-] migrate tests to CI server (travis)
+[-] evolve gui and make it work in setup with BBB connected thru LAN
+

@@ -12,7 +12,7 @@ if sys.platform == "linux2":
     try:
         host = os.uname()
         if host[1] == "beaglebone":
-            Hostname = "TestStand"  # extends: netcomserver
+            Hostname = "TestStand"
             print("Running on BeagleBone Black")
             invokeJsonParser = True
     except:
@@ -64,8 +64,6 @@ txData_cl = ""
 rxData_ser = ""
 str_rxData_ser = ""
 txData_ser = "TEST"
-
-testRun = ""
 
 # Inet Settings
 if serverloopback == False:

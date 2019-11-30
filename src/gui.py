@@ -83,7 +83,7 @@ class Gui:
             settings.txData = JsonControl.serialize(
                 self, self.jsonSchema)
             sendNetData()
-            self.entry_rxData.insert(0, settings.rxData)
+            self.entry_rxData.insert(0, settings.rxData_cl)
 
         else:
             print("Unkown Test Stand ID!")

@@ -17,6 +17,15 @@ class DataControl():
         return schema.values()
 
     def startTest(self, schema, testStandID):
+        """startTest Initiates a testrun by setting up the values in
+        the JSON schema and pushing them to the teststand via netsockets
+        (sendNetData)
+
+        :param schema: Json schema
+        :type schema: dict
+        :param testStandID: "TS1" "TS2" etc.
+        :type testStandID: str
+        """
         if testStandID == "TS1":
             print("Test Stand 1 Starts Testing!")
             self.cjsonSchema.setValues(schema)
@@ -27,7 +36,16 @@ class DataControl():
             print("Unkown Test Stand ID!")
             print("Provide TS1 for Test Stand 1, TS2, TS3 etc..")
 
-    def bbbsetTemplate(self, schema):
+    def trySetTemplate(self, schema):
+        """trySetTemplate Will attempt to create a default template,
+        that the teststand ID and commands can be stored in, 
+        before initiating a test.
+
+        :param schema: json schema
+        :type schema: dict
+        :return: schema
+        :rtype: dict
+        """
         try:
             self.jsonSchema = self.cjsonSchema.getTemplate(
                 schema)
@@ -40,39 +58,25 @@ class DataControl():
 
 if __name__ == '__main__':
     argv = sys.argv
-    argvcommands = ['-bbbtest']
-    argvcommandlist = ' '.join(argvcommands)
-    bbbtest = DataControl()
-    bbbtemplate = bbbtest.bbbsetTemplate(settings.defaultJsonTemplate)
-
-    if len(argv) > 2:
-        teststandID = argv[2]
-        if argvcommands[0] in argv:
-            settings.msgType = argv[3]
-            settings.commandList = argv[4]
-            settings.statusCode = argv[5]
-        else:
-            print("Available Commands is:")
-            for command in range(0, len(argvcommands)):
-                print(argvcommands[command])
-    else:
-       # print(("Invalid input!"
-        #       "If default template is choosen:"
-         #      "Usage: -command -teststandid -msgtype -commandlist -statuscode"
-          #     "Where command can be: %s" % argvcommandlist))
-       # print(("teststandid shall be TS1, TS2, TS3 etc."
-        #       "msgtype: <command|status|data>"
-         #      "commandlist: <comma separated list of commands>"
-          #     "statuscode: statusCodeIdForTeststand"))
-        settings.msgType = "command"
-        settings.statusCode = "SomeStatusCode"
+    JsonWorkerClass = DataControl()
+    jsonWorkerSchema = JsonWorkerClass.trySetTemplate(
+        settings.defaultJsonTemplate)
+    settings.msgType = "command"
+    settings.statusCode = "Ready"
+    if len(argv) == 4:
+        teststandID = argv[1]
+        settings.msgType = argv[2]
+        settings.commandList = argv[3]
+    elif len(argv) > 1 and len(argv) < 4:
+        print("Invalid input!")
+    # Start Main Sequence, takes user input to set GPIO pin high or low:
     while True:
-        choice = input("Set GPIO P8_11 HIGH (h) or LOW (l), Q for Quit")
+        choice = input("Set GPIO P8_11 HIGH (h) or LOW (l), Q for Quit\n")
         if choice == 'HIGH' or choice == 'h':
             settings.commandList = "setGPIO_P8_11H"
-        elif choice == 'Q':
+        elif choice == 'Q' or choice == 'q':
             print("Farewell")
             break
         else:
             settings.commandList = "setGPIO_P8_11L"
-        bbbtest.startTest(bbbtemplate, "TS1")
+        JsonWorkerClass.startTest(jsonWorkerSchema, "TS1")

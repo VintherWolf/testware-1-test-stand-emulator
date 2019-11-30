@@ -94,6 +94,11 @@ class JsonControl():
             print("No Default values to set")
 
     def setValues(self, schema):
+        """setValues applies the shared set values to the json schema
+
+        :param schema: json schema
+        :type schema: dict
+        """
         schema["protocolVersion"] = settings.protocolVersion
         schema["sentBy"] = settings.sentBy
         schema["msgType"] = settings.msgType
@@ -103,6 +108,12 @@ class JsonControl():
         schema["embeddedFile"] = settings.embeddedFile
 
     def getValues(self, schema):
+        """getValues readback the values from the Json schema and
+        save them into the shared json schema values
+
+        :param schema: [description]
+        :type schema: [type]
+        """
         settings.protocolVersion = schema["protocolVersion"]
         settings.sentBy = schema["sentBy"]
         settings.msgType = schema["msgType"]
